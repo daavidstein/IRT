@@ -1,4 +1,6 @@
 jupyterlab
-py-irt
+pandas
 seaborn
 scipy
+girth
+tqdm
