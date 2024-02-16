@@ -26,72 +26,57 @@ with irf_tab:
 
 with iic_tab:
     x = np.arange(-4, 4, 0.1)
-    disc = np.arange(0, 3, 0.6)
     fig, ax = plt.subplots()
-    #for disc in np.arange(0, 3, 0.6):
     y = iic(ability=x, disc=a, diff=b,scale=False)
     ax.plot(x, y)
     plt.title(f"Item Information Function (2PL) \nDifficulty={b},Discrimination={a}")
     plt.suptitle(rf"$IIC(\theta) = {a}^2 \cdot P(\theta) \cdot (1 - P(\theta))$",y = 0.85, x=0.32)
-    #ax.legend(title="Discrimination")
     plt.xlabel("θ (Ability)")
     plt.ylabel("Information")
     ax = plt.gca()
-    #ax.set_xlim([xmin, xmax])
     ax.set_ylim([0, 2.5])
     st.pyplot(fig)
 
 with se_tab:
     x = np.arange(-4, 4, 0.1)
-    disc = np.arange(0, 3, 0.6)
     fig, ax = plt.subplots()
-    #for disc in np.arange(0, 3, 0.6):
     y = se_est(ability=x, disc=a, diff=b)
     ax.plot(x, y)
     plt.title(f"Standard Error of Estimate (2PL) \nDifficulty={b},Discrimination={a}")
     plt.suptitle(rf'$SE_{{est}}(\theta) = \dfrac{{1}}{{\sqrt{{({a})^2 \cdot P(\theta) \cdot (1 - P(\theta))}}}}$',y = 0.23, x=0.5)
-    #ax.legend(title="Discriminatioit run standn")
     plt.xlabel("θ (Ability)")
     plt.ylabel("Standard Error of Estimate")
     ax = plt.gca()
-    #ax.set_xlim([xmin, xmax])
     ax.set_ylim([0, 5])
     st.pyplot(fig)
 
 with var_tab:
     x = np.arange(-4, 4, 0.1)
-    disc = np.arange(0, 3, 0.6)
     fig, ax = plt.subplots()
-    #for disc in np.arange(0, 3, 0.6):
     prob = irf(ability=x, disc=a, diff=b)
     y = prob*(1-prob)
     ax.plot(x, y)
     plt.title(f"Item Response Variance (2PL) \nDifficulty={b},Discrimination={a}")
     plt.suptitle(rf"$Var(Response(\theta)) =\cdot P(\theta) \cdot (1 - P(\theta))$", y=0.85, x=0.4)
-    #ax.legend(title="Discriminatioit run standn")
     plt.xlabel("θ (Ability)")
     plt.ylabel("Variance")
     ax = plt.gca()
-    #ax.set_xlim([xmin, xmax])
     ax.set_ylim([0, 0.3])
     st.pyplot(fig)
 
 with entropy_tab:
+    #   a = 1
     x = np.arange(-4, 4, 0.1)
-    disc = np.arange(0, 3, 0.6)
     fig, ax = plt.subplots()
-    #for disc in np.arange(0, 3, 0.6):
     prob = irf(ability=x, disc=a, diff=b)
-    y = prob*(1-prob)
-    ax.plot(x, y)
-    plt.title(f"Item Response Variance (2PL) \nDifficulty={b},Discrimination={a}")
-    plt.suptitle(rf"$Var(Response(\theta)) =\cdot P(\theta) \cdot (1 - P(\theta))$", y=0.85, x=0.4)
-    #ax.legend(title="Discriminatioit run standn")
+    entropy = -sum([prob*np.log2(prob)])
+    ax.plot(x, entropy)
+    plt.title(f"Item Entropy (2PL)\nDifficulty={b},Discrimination={a}")
+    # plt.suptitle(rf"$Var(Response(\theta)) =\cdot P(\theta) \cdot (1 - P(\theta))$", y=0.85, x=0.4)
     plt.xlabel("θ (Ability)")
-    plt.ylabel("Variance")
+    plt.ylabel("Entropy")
+    ax.set_ylim([0, 0.6])
     ax = plt.gca()
-    #ax.set_xlim([xmin, xmax])
-    ax.set_ylim([0, 0.3])
     st.pyplot(fig)
 
 
