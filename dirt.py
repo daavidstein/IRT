@@ -24,7 +24,7 @@ def iic(ability, diff, disc, scale=True):
     prob = irf(ability=ability, diff=diff, disc=disc)
     info = (disc ** 2) * prob * (1 - prob)
     if scale:
-        info = (D ** 2) * info
+        info *= (D ** 2)
     return info
 
 def se_est(ability,disc,diff):
